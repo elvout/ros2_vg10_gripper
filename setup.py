@@ -13,6 +13,7 @@ setup(
         ("share/" + package_name, ["package.xml"]),
         # (optional) launch files, params, etc.
         # ('share/' + package_name + '/launch', ['launch/demo.launch.py']),
+        ("share/" + package_name + "/urdf", ["urdf/vg10.xacro"]),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
