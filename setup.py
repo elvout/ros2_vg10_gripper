@@ -1,4 +1,4 @@
-from pathlib import Path
+from glob import glob
 
 from setuptools import setup
 
@@ -14,11 +14,9 @@ setup(
         # Install package.xml for tooling
         (f"share/{package_name}", ["package.xml"]),
         # launch files, params, etc.
-        (f"share/{package_name}/urdf", [str(p) for p in Path("urdf").glob("*.xacro")]),
-        (
-            f"share/{package_name}/meshes",
-            [str(p) for p in Path("meshes").glob("*.stl")],
-        ),
+        (f"share/{package_name}/launch", glob("launch/*.launch.py")),
+        (f"share/{package_name}/urdf", glob("urdf/*.xacro")),
+        (f"share/{package_name}/meshes", glob("meshes/*.stl")),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
