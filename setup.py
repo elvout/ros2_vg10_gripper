@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from setuptools import setup
 
 package_name = "ros2_vg10_gripper"
@@ -8,12 +10,15 @@ setup(
     packages=[package_name],
     data_files=[
         # Register package with the ament index
-        ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
+        ("share/ament_index/resource_index/packages", [f"resource/{package_name}"]),
         # Install package.xml for tooling
-        ("share/" + package_name, ["package.xml"]),
-        # (optional) launch files, params, etc.
-        # ('share/' + package_name + '/launch', ['launch/demo.launch.py']),
-        ("share/" + package_name + "/urdf", ["urdf/vg10.xacro"]),
+        (f"share/{package_name}", ["package.xml"]),
+        # launch files, params, etc.
+        (f"share/{package_name}/urdf", [str(p) for p in Path("urdf").glob("*.xacro")]),
+        (
+            f"share/{package_name}/meshes",
+            [str(p) for p in Path("meshes").glob("*.stl")],
+        ),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
