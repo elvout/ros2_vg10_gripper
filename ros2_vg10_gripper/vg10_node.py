@@ -20,7 +20,7 @@ class VG10Node(Node):
 
     def grip_callback(self, request, response):
         # TODO(elvout): strength should be a param
-        self.vg10.vg10_grip(2, 40)
+        self.vg10.vg10_grip(2, 60)
 
         return response
 
